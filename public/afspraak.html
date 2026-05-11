@@ -5,14 +5,15 @@
   <title>Afspraak maken</title>
   <link rel="stylesheet" href="/CSS/stylesheet.css">
 </head>
-
 <body>
 
 <div class="navbar">
+  <!-- navbar PO logo -->
   <div class="nav-left">
     <img src="/Images/Logo.avif" alt="Logo">
   </div>
 
+  <!-- navbar dummy links -->
   <div class="nav-links">
     <a href="#">Voor ondernemers</a>
     <a href="#">Actueel en ondernemersverhalen</a>
@@ -20,6 +21,7 @@
     <a href="#">Contact</a>
   </div>
 
+  <!-- navbar dummy zoekveld -->
   <div class="nav-right">
     <img src="/Images/Zoeken.png" alt="Zoeken">
   </div>
@@ -29,7 +31,7 @@
 
   <div class="afspraak-container">
 
-    <!-- LINKS -->
+    <!-- infoblokken links -->
     <div class="afspraak-info">
       <h1>Plan een afspraak</h1>
 
@@ -47,7 +49,7 @@
       </div>
     </div>
 
-    <!-- RECHTS -->
+    <!-- invoervelden/agenda rechts -->
     <div class="afspraak-agenda" id="rightBox">
 
       <!-- VRAAG -->
@@ -63,19 +65,16 @@
         </button>
       </div>
 
-      <!-- AI NOTICE -->
+      <!-- AI-waarschuwing -->
       <div class="ai-notice">
         Deze intake maakt gebruik van AI om vragen dynamisch af te stemmen op jouw antwoorden.
         Vul geen vertrouwelijke of gevoelige persoonsgegevens in.
       </div>
-
     </div>
-
   </div>
-
 </section>
 
+<!-- inladen javascript voor ophalen vragen, communicatie met Ollama, progressiebalk, data doorsturen naar agent en inladen agenda -->
 <script src="intake.js"></script>
-
 </body>
 </html>

@@ -1,9 +1,16 @@
+/* =========================
+   ALGEMENE BASISSTIJLEN
+========================= */
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
 }
 
-/* NAVBAR */
+/* =========================
+   NAVBAR - HOOFDNAVIGATIE
+========================= */
+
 .navbar {
   display: flex;
   align-items: center;
@@ -41,7 +48,19 @@ body {
   font-size: 16px;
 }
 
-/* HERO */
+.nav-right img {
+  height: 52.5px;      /* groot logo */
+  width: auto;
+  position: absolute;
+  top: 20px;         /* logo steekt boven navbar uit */
+  right: 230px;            /* links uitlijnen */
+  z-index: 10;        /* logo boven alles */
+}
+
+/* =========================
+   HERO SECTION (HOME BANNER)
+========================= */
+
 .hero {
   height: 55vh;
   background: url('../Images/banner.webp') center/cover no-repeat;
@@ -85,14 +104,9 @@ body {
   cursor: pointer;
 }
 
-.nav-right img {
-  height: 52.5px;      /* groot logo */
-  width: auto;
-  position: absolute;
-  top: 20px;         /* logo steekt boven navbar uit */
-  right: 230px;            /* links uitlijnen */
-  z-index: 10;        /* logo boven alles */
-}
+/* =========================
+   ONDERNEMEN SECTIE (HOME CONTENT)
+========================= */
 
 .ondernemen-section {
   background-color: #f4f4f4;
@@ -123,7 +137,10 @@ body {
   margin-bottom: 30px;
 }
 
-/* Cards */
+/* =========================
+   CARDS (NIEUWS BLOKKEN)
+========================= */
+
 .card {
   flex: 1;
   padding: 40px;
@@ -138,22 +155,10 @@ body {
   color: white;
 }
 
-/* Afbeelding kaart */
-.card.image {
-  background: url('jouw-afbeelding.jpg') center/cover no-repeat;
+/* Lichte kaart */
+.card.light {
+  background-color: #666666;
   color: white;
-  position: relative;
-}
-
-.card.image::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-color: rgba(0,0,0,0.5);
-}
-
-.card.image * {
-  position: relative;
 }
 
 /* Tekst */
@@ -178,7 +183,10 @@ body {
   margin: 0 auto;
 }
 
-/* AFSPRAAK PAGINA */
+/* =========================
+   AFSPRAAK PAGINA LAYOUT
+========================= */
+
 .afspraak-page {
   background-color: #f4f4f4;
   padding: 80px 60px;
@@ -218,6 +226,10 @@ body {
   margin-bottom: 20px;
   text-align: center;
 }
+
+/* =========================
+   WIST JE DAT BOX
+========================= */
 
 .wist-je-dat-inline {
   margin-top: 80px;
@@ -269,7 +281,9 @@ body {
   border-radius: 4px;
 }
 
-/* PROGRESS BAR */
+/* =========================
+   PROGRESS BAR (AFSPRAAK PAGINA)
+========================= */
 
 #progressBar {
   width: 100%;

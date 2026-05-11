@@ -2,8 +2,9 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
+// Bouwt een system prompt voor de AI op basis van het gekozen thema.
 function buildPrompt(theme) {
-return `
+    return `
 Je bent een zakelijke intake assistent.
 
 Je taak:
@@ -29,25 +30,31 @@ Output uitsluitend de vraag.
 `;
 }
 
+// HTTP server aanmaken
+// Deze server handelt zowel AI requests (/chat) als statische bestanden (HTML/CSS/JS) af
 const server = http.createServer((req, res) => {
 
     // =========================
-    // CHAT API
+    // AI ENDPOINT (/chat)
     // =========================
     if (req.url === '/chat' && req.method === 'POST') {
 
         let body = '';
 
+        // Data komt in chunks binnen → samenvoegen tot 1 string
         req.on('data', chunk => {
             body += chunk.toString();
         });
 
+        // Wanneer volledige request body binnen is
         req.on('end', async () => {
 
             try {
 
+                // Parse JSON van frontend (message + theme)
                 const { message, theme } = JSON.parse(body);
 
+                // Call naar lokale Ollama AI server
                 const ollamaResponse = await fetch('http://localhost:11434/api/chat', {
                     method: 'POST',
                     headers: {
@@ -55,6 +62,8 @@ const server = http.createServer((req, res) => {
                     },
                     body: JSON.stringify({
                         model: 'llama3.1',
+
+                        // System prompt bepaalt gedrag van de AI
                         messages: [
                             {
                                 role: 'system',
@@ -65,13 +74,19 @@ const server = http.createServer((req, res) => {
                                 content: message
                             }
                         ],
+
+                        // Geen streaming, direct antwoord terug
                         stream: false,
+
+                        // Lagere temperatuur zodat de LLM consistentere antwoorden teruggeeft
                         temperature: 0.3
                     })
                 });
 
+                // Response van Ollama omzetten naar JSON
                 const data = await ollamaResponse.json();
 
+                // Antwoord terugsturen naar frontend
                 res.writeHead(200, {
                     'Content-Type': 'application/json'
                 });
@@ -82,6 +97,7 @@ const server = http.createServer((req, res) => {
 
             } catch (error) {
 
+                // Foutafhandeling bij AI call of parsing
                 console.error(error);
 
                 res.writeHead(500, {
@@ -98,14 +114,18 @@ const server = http.createServer((req, res) => {
     }
 
     // =========================
-    // STATIC FILES
+    // STATIC FILE SERVER
     // =========================
+
+    // Pad bepalen naar gevraagde file
     let filePath = req.url === '/'
         ? path.join(__dirname, 'public', 'index.html')
         : path.join(__dirname, 'public', req.url);
 
+    // File extensie bepalen (.html, .css, .js)
     const ext = path.extname(filePath);
 
+    // Content-type mapping voor browser
     const contentTypes = {
         '.html': 'text/html',
         '.css': 'text/css',
@@ -114,8 +134,10 @@ const server = http.createServer((req, res) => {
 
     const contentType = contentTypes[ext] || 'text/plain';
 
+    // Bestand uitlezen van disk
     fs.readFile(filePath, (err, content) => {
 
+        // Als bestand niet bestaat → 404
         if (err) {
             res.writeHead(404, {
                 'Content-Type': 'text/plain'
@@ -125,6 +147,7 @@ const server = http.createServer((req, res) => {
             return;
         }
 
+        // Bestand succesvol gevonden → terugsturen naar browser
         res.writeHead(200, {
             'Content-Type': contentType
         });
@@ -133,6 +156,11 @@ const server = http.createServer((req, res) => {
     });
 });
 
+// =========================
+// SERVER START
+// =========================
+
+// Server draait op poort 3000
 server.listen(3000, () => {
     console.log('Server draait op http://localhost:3000');
 });
