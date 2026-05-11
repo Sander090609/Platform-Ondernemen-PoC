@@ -1,0 +1,259 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* NAVBAR */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 35px 60px;
+  background: #ffffff;
+  position: relative;
+  overflow: visible;
+  z-index: 5; /* zorgt dat navbar boven hero ligt */
+}
+
+.nav-left {
+  position: relative;
+  height: 0; /* voorkomt dat logo de navbar-hogte beïnvloedt */
+}
+
+.nav-left img {
+  height: 127px;      /* groot logo */
+  width: auto;
+  position: absolute;
+  top: -45px;         /* logo steekt boven navbar uit */
+  left: 82px;            /* links uitlijnen */
+  z-index: 10;        /* logo boven alles */
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+  margin-left: -130px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+}
+
+/* HERO */
+.hero {
+  height: 55vh;
+  background: url('../Images/banner.webp') center/cover no-repeat;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2; /* boven overlay */
+}
+
+.hero h1 {
+  font-size: 60px;
+  margin: 0;
+  font-weight: bold;
+}
+
+.hero p {
+  font-size: 22px;
+  margin: 15px 0;
+}
+
+.btn {
+  background: #f4d94c;
+  padding: 12px 25px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.nav-right img {
+  height: 52.5px;      /* groot logo */
+  width: auto;
+  position: absolute;
+  top: 20px;         /* logo steekt boven navbar uit */
+  right: 230px;            /* links uitlijnen */
+  z-index: 10;        /* logo boven alles */
+}
+
+.ondernemen-section {
+  background-color: #f4f4f4;
+  padding: 80px 60px;
+}
+
+.container {
+  display: flex;
+  gap: 40px;
+  align-items: stretch;
+}
+
+/* Linker tekst */
+.ondernemen-text {
+  flex: 1;
+}
+
+.ondernemen-text h2 {
+  font-size: 40px;
+  color: #1c2431;
+  margin-bottom: 20px;
+}
+
+.ondernemen-text p {
+  font-size: 18px;
+  color: #333;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+/* Cards */
+.card {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Donkere kaart */
+.card.dark {
+  background-color: #0e1a2b;
+  color: white;
+}
+
+/* Afbeelding kaart */
+.card.image {
+  background: url('jouw-afbeelding.jpg') center/cover no-repeat;
+  color: white;
+  position: relative;
+}
+
+.card.image::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.card.image * {
+  position: relative;
+}
+
+/* Tekst */
+.card h3 {
+  font-size: 22px;
+  margin: 20px 0;
+}
+
+.date {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+/* Gele knop */
+.btn-yellow {
+  background-color: #e5db63;
+  border: none;
+  padding: 12px 20px;
+  cursor: pointer;
+  font-weight: bold;
+  display: block;
+  margin: 0 auto;
+}
+
+/* AFSPRAAK PAGINA */
+.afspraak-page {
+  background-color: #f4f4f4;
+  padding: 80px 60px;
+}
+
+.afspraak-container {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.afspraak-info {
+  flex: 1;
+  background-color: #0e1a2b;
+  color: white;
+  padding: 50px;
+}
+
+.afspraak-info h1 {
+  font-size: 42px;
+  margin-bottom: 20px;
+}
+
+.afspraak-info p {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.afspraak-agenda {
+  flex: 2;
+  background-color: white;
+  padding: 20px;
+}
+
+.afspraak-agenda h2 {
+  font-size: 22px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.wist-je-dat-inline {
+  margin-top: 80px;
+  background-color: #ffffff;
+  padding: 25px;
+  border-left: 5px solid #e5db63;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+}
+
+.wist-je-dat-inline h2 {
+  font-size: 22px;
+  margin-top: 0px;
+  color: #1c2431;
+}
+
+.wist-je-dat-inline p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #555;
+}
+
+.afspraak-input {
+  width: 90%;
+  padding: 14px 16px;
+  font-size: 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  outline: none;
+  background-color: #f3f4f6;
+  transition: all 0.2s ease;
+  display: block;
+  margin: 0 auto;
+}
+
+.afspraak-input:focus {
+  background-color: #ffffff;
+  border-color: #e5db63;
+  box-shadow: 0 0 0 3px rgba(229, 219, 99, 0.25);
+}

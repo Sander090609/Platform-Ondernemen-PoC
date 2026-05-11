@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>Afspraak maken</title>
+  <link rel="stylesheet" href="/CSS/stylesheet.css">
+</head>
+
+<body>
+
+<div class="navbar">
+  <div class="nav-left">
+    <img src="/Images/Logo.avif" alt="Logo">
+  </div>
+
+  <div class="nav-links">
+    <a href="#">Voor ondernemers</a>
+    <a href="#">Actueel en ondernemersverhalen</a>
+    <a href="#">Agenda</a>
+    <a href="#">Contact</a>
+  </div>
+
+  <div class="nav-right">
+    <img src="/Images/Zoeken.png" alt="Zoeken">
+  </div>
+</div>
+
+<section class="afspraak-page">
+
+  <div class="afspraak-container">
+
+    <!-- LINKS (blijft hetzelfde concept) -->
+    <div class="afspraak-info">
+      <h1>Plan een afspraak</h1>
+
+      <p>
+        Plan eenvoudig een gesprek met een adviseur van de gemeente Hardenberg.
+        Kies hieronder een geschikt moment in de agenda.
+      </p>
+
+      <div class="wist-je-dat-inline">
+        <h2>Wist je dat?</h2>
+        <p>
+          Platform Ondernemen Hardenberg ondernemers helpt met advies, inspiratie en verbinding.
+          Van startende ondernemers tot gevestigde bedrijven: wij ondersteunen groei en samenwerking in de regio.
+        </p>
+      </div>
+    </div>
+
+    <!-- RECHTS (DYNAMISCH) -->
+    <div class="afspraak-agenda" id="rightBox">
+
+      <!-- eerst vraag -->
+      <div id="questionBox">
+        <h2 id="questionLabel">Wat is je voor- en achternaam?</h2>
+
+        <input id="userInput" class="afspraak-input" type="text" placeholder="Typ hier je antwoord..." />
+
+        <br><br>
+
+        <button class="btn-yellow" onclick="sendInput()">
+          Doorgaan
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+<script src="intake.js"></script>
+</body>
+</html>
