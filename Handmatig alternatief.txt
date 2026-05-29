@@ -1,0 +1,36 @@
+const flow = [
+    // Handmatige vragen die sws gesteld moeten worden
+    { type: 'manual', question: 'Wat is je voor- en achternaam?' },
+    { type: 'manual', question: 'Wat is de naam van je bedrijf?' },
+    { type: 'manual', question: 'Wat doet je bedrijf precies?' },
+
+    // Thema 1: Huidige situatie van het bedrijf
+    { type: 'manual', question: 'Waar ben je momenteel het meest trots op binnen je bedrijf?' },
+    { type: 'manual', question: 'In welke fase bevindt jouw bedrijf zich momenteel? (opstart / groei / stabiel / verandering)' },
+    { type: 'manual', question: 'Hoe groot is jouw organisatie? (alleen ondernemer / 2-5 medewerkers / 6-20 medewerkers / 20+ medewerkers)' },
+
+    // Thema 2: Tijdsbesteding en prioriteiten
+    { type: 'manual', question: 'Waar besteed je momenteel het grootste deel van je tijd aan?' },
+    { type: 'manual', question: 'Welke werkzaamheden kosten je op dit moment de meeste energie of tijd?' },
+    { type: 'manual', question: 'Waar zou je juist meer tijd aan willen besteden?' },
+
+    // Thema 3: Organisatie en samenwerking
+    { type: 'manual', question: 'Wat zorgt ervoor dat het werk binnen jouw bedrijf goed loopt?' },
+    { type: 'manual', question: 'Hoe ervaar je de samenwerking binnen je team of met partners?' },
+    { type: 'manual', question: 'Hoe zou je de sfeer binnen jouw organisatie omschrijven?' },
+
+    // Thema 4: Uitdagingen en ontwikkelpunten
+    { type: 'manual', question: 'Waar wil jij jezelf als ondernemer momenteel het meest in ontwikkelen?' },
+    { type: 'manual', question: 'Wat is op dit moment jouw grootste zakelijke uitdaging?' },
+    { type: 'manual', question: 'Waar loop je het vaakst tegenaan in de dagelijkse praktijk?' },
+
+    // Thema 5: Toekomst en groeikansen
+    { type: 'manual', question: 'Hoe duidelijk is voor jou waar je met je bedrijf naartoe wilt?' },
+    { type: 'manual', question: 'Waar zie jij de grootste kansen voor jouw bedrijf in de komende 6 tot 12 maanden?' },
+    { type: 'manual', question: 'Wat zou je graag willen verbeteren of bereiken in de komende periode?' },
+
+    // Thema 6: Verwachting van het gesprek
+    { type: 'manual', question: 'Wat hoop je uit dit gesprek te halen?' },
+    { type: 'manual', question: 'Waar krijg jij het meeste energie van in het ondernemen?' },
+    { type: 'manual', question: 'Welk onderwerp zou je graag extra aandacht willen geven tijdens het gesprek?' }
+];
