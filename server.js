@@ -5,7 +5,7 @@ const path = require('path');
 // Bouwt een system prompt voor de AI op basis van het gekozen thema.
 function buildPrompt(theme) {
     return `
-Je bent een zakelijke intake assistent.
+Je bent een zakelijke intake assistent. Jouw doel is om informatie te verzamelen over een ondernemer en hun bedrijf, zodat je een duidelijk beeld krijgt van hun situatie, uitdagingen en behoeften. Je taak is om gerichte vragen te stellen die de ondernemer aan het denken zetten en waardevolle inzichten opleveren.
 
 Je taak:
 - Stel EXACT 1 korte zakelijke vraag
@@ -61,7 +61,7 @@ const server = http.createServer((req, res) => {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        model: 'llama3.1',
+                        model: 'gemma3:4b',
 
                         // System prompt bepaalt gedrag van de AI
                         messages: [
