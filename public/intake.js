@@ -137,43 +137,57 @@ async function sendInput() {
         console.log(chatHistory);
         console.log(themeHistories);
 
-        try {
+        // Eén gezamenlijke payload voor beide bestemmingen
+        const payload = {
+            sessionId: crypto.randomUUID(),
+            chatHistory,
+            themeHistories,
+            manualHistory,
+            finishedAt: new Date().toISOString()
+        };
 
-            const response = await fetch(
-                'https://lcs4.app.n8n.cloud/webhook-test/formulier-data',
-                {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        sessionId: crypto.randomUUID(),
-                        chatHistory,
-                        themeHistories,
-                        manualHistory,
-                        finishedAt: new Date().toISOString()
-                    })
-                }
-            );
-
-            if (!response.ok) {
-                throw new Error(
-                    `n8n webhook gaf status ${response.status}`
-                );
+        // --- PAD 1: n8n -> Teams-kanaal aanmaken ---
+        // LET OP: gebruik de PRODUCTION webhook-URL (/webhook/...), niet /webhook-test/...
+        // en zet de workflow op "Active" in n8n. Anders vuurt dit alleen als je
+        // net op "Listen for test event" hebt geklikt in de editor.
+        const n8nCall = fetch(
+            'https://lcs4.app.n8n.cloud/webhook/formulier-data',
+            {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
             }
+        ).then(response => {
+            if (!response.ok) {
+                throw new Error(`n8n webhook gaf status ${response.status}`);
+            }
+            console.log('✅ n8n (Teams-kanaal) succesvol aangeroepen');
+        }).catch(error => {
+            console.error('❌ Fout bij versturen naar n8n:', error);
+        });
 
-        } catch (error) {
+        // --- PAD 2: Monday-agent -> CRM item/subitem aanmaken ---
+        const mondayCall = fetch(
+            'http://localhost:3001/intake',
+            {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            }
+        ).then(response => {
+            if (!response.ok) {
+                throw new Error(`Monday-agent gaf status ${response.status}`);
+            }
+            console.log('✅ Monday-agent (CRM) succesvol aangeroepen');
+        }).catch(error => {
+            console.error('❌ Fout bij versturen naar Monday-agent:', error);
+        });
 
-            console.error(
-                'Fout bij versturen naar n8n:',
-                error
-            );
+        // Beide onafhankelijk laten lopen — één mislukking blokkeert de ander niet,
+        // en de kalender wordt sowieso getoond zodra beide klaar zijn (gelukt of niet).
+        await Promise.allSettled([n8nCall, mondayCall]);
 
-        } finally {
-
-            // Kalender altijd tonen, ook als n8n faalt
-            showCalendar();
-        }
+        showCalendar();
 
         return;
     }
@@ -228,4 +242,3 @@ function showCalendar() {
 
     document.body.appendChild(script);
 }
-
