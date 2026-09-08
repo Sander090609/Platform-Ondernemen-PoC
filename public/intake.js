@@ -231,7 +231,7 @@ function showCalendar() {
     box.innerHTML = `
         <div
             class="calendly-inline-widget"
-            data-url="https://calendly.com/swijnand0906/30min?hide_event_type_details=1"
+            data-url="ZELF NIEUWE AANMAKEN EN INVOEGEN"
             style="min-width:320px;height:700px;">
         </div>
     `;
